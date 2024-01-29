@@ -1,26 +1,16 @@
-import dash
-from dash import html, dcc
-from dash.dependencies import Input, Output
+from pathlib import Path
+import argparse
+
 import pandas as pd
+from dash import html, dcc, Dash
+from dash.dependencies import Input, Output
 import plotly.express as px
 
-# Load data
-file_path = 'BWB_AWQMP_Data_2009-2022.xlsx'
-df = pd.read_excel(file_path, sheet_name='BWB Tidal Data 2009-2022')
-df['collection_date'] = pd.to_datetime(df['collection_date'])
+from lib import load_data
 
-# Convert to numeric
-measurements = [
-    'Total Nitrogen (mg/L)', 'Total Phosphorus (mg/L)', 'Chlorophyll (µg/L)',
-    'Total Kjeldahl Nitrogen (mg/L)', 'Enterococcus Bacteria (MPN/100mL) - A2LA Lab',
-    'Enterococcus Bacteria (MPN/100mL) - BWB Lab', 'Secchi Depth (m)'
-]
-df[measurements] = df[measurements].apply(pd.to_numeric, errors='coerce')
 
-# Initialize app
-app = dash.Dash(__name__)
+app = Dash(__name__)
 
-# Define layout
 app.layout = html.Div([
     html.H1("Water Quality Data Visualization"),
     dcc.Graph(id='map-graph'),
@@ -33,24 +23,33 @@ app.layout = html.Div([
     dcc.Graph(id='secchi-depth-graph')
 ])
 
-# Callback for map
+df = load_data('./data/BWB_AWQMP_Data_2009-2022.xlsx', 'BWB Tidal Data 2009-2022')
+
+
 @app.callback(
     Output('map-graph', 'figure'),
     [Input('nitrogen-graph', 'hoverData')]
 )
 def update_map(hoverData):
-    fig_map = px.scatter_mapbox(df, lat='latitude', lon='longitude', hover_name='station_id',
-                                color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
+    fig_map = px.scatter_mapbox(df,
+                                lat='latitude',
+                                lon='longitude',
+                                hover_name='station_id',
+                                color_continuous_scale=px.colors.cyclical.IceFire,
+                                size_max=15,
+                                zoom=10)
     fig_map.update_layout(mapbox_style="open-street-map")
     return fig_map
 
-# Callbacks for graphs
 @app.callback(
     Output('nitrogen-graph', 'figure'),
     [Input('map-graph', 'clickData')]
 )
 def update_nitrogen_graph(clickData):
-    fig_nitrogen = px.line(df, x='collection_date', y='Total Nitrogen (mg/L)', title='Total Nitrogen Over Time')
+    fig_nitrogen = px.line(df,
+                           x='collection_date',
+                           y='Total Nitrogen (mg/L)',
+                           title='Total Nitrogen Over Time')
     return fig_nitrogen
 
 @app.callback(
@@ -58,7 +57,10 @@ def update_nitrogen_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_phosphorus_graph(clickData):
-    fig_phosphorus = px.line(df, x='collection_date', y='Total Phosphorus (mg/L)', title='Total Phosphorus Over Time')
+    fig_phosphorus = px.line(df,
+                             x='collection_date',
+                             y='Total Phosphorus (mg/L)',
+                             title='Total Phosphorus Over Time')
     return fig_phosphorus
 
 @app.callback(
@@ -66,7 +68,10 @@ def update_phosphorus_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_chlorophyll_graph(clickData):
-    fig_chlorophyll = px.line(df, x='collection_date', y='Chlorophyll (µg/L)', title='Chlorophyll Over Time')
+    fig_chlorophyll = px.line(df,
+                              x='collection_date',
+                              y='Chlorophyll (µg/L)',
+                              title='Chlorophyll Over Time')
     return fig_chlorophyll
 
 @app.callback(
@@ -74,7 +79,10 @@ def update_chlorophyll_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_kjeldahl_nitrogen_graph(clickData):
-    fig_kjeldahl_nitrogen = px.line(df, x='collection_date', y='Total Kjeldahl Nitrogen (mg/L)', title='Total Kjeldahl Nitrogen Over Time')
+    fig_kjeldahl_nitrogen = px.line(df,
+                                    x='collection_date',
+                                    y='Total Kjeldahl Nitrogen (mg/L)',
+                                    title='Total Kjeldahl Nitrogen Over Time')
     return fig_kjeldahl_nitrogen
 
 @app.callback(
@@ -82,7 +90,10 @@ def update_kjeldahl_nitrogen_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_enterococcus_a2la_graph(clickData):
-    fig_enterococcus_a2la = px.line(df, x='collection_date', y='Enterococcus Bacteria (MPN/100mL) - A2LA Lab', title='Enterococcus Bacteria (A2LA Lab) Over Time')
+    fig_enterococcus_a2la = px.line(df,
+                                    x='collection_date',
+                                    y='Enterococcus Bacteria (MPN/100mL) - A2LA Lab',
+                                    title='Enterococcus Bacteria (A2LA Lab) Over Time')
     return fig_enterococcus_a2la
 
 @app.callback(
@@ -90,7 +101,10 @@ def update_enterococcus_a2la_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_enterococcus_bwb_graph(clickData):
-    fig_enterococcus_bwb = px.line(df, x='collection_date', y='Enterococcus Bacteria (MPN/100mL) - BWB Lab', title='Enterococcus Bacteria (BWB Lab) Over Time')
+    fig_enterococcus_bwb = px.line(df,
+                                   x='collection_date',
+                                   y='Enterococcus Bacteria (MPN/100mL) - BWB Lab',
+                                   title='Enterococcus Bacteria (BWB Lab) Over Time')
     return fig_enterococcus_bwb
 
 @app.callback(
@@ -98,12 +112,20 @@ def update_enterococcus_bwb_graph(clickData):
     [Input('map-graph', 'clickData')]
 )
 def update_secchi_depth_graph(clickData):
-    fig_secchi_depth = px.line(df, x='collection_date', y='Secchi Depth (m)', title='Secchi Depth Over Time')
+    fig_secchi_depth = px.line(df,
+                               x='collection_date',
+                               y='Secchi Depth (m)',
+                               title='Secchi Depth Over Time')
     return fig_secchi_depth
 
-# Run the app
-if __name__ == '__main__':
-    app.run_server(debug=True)
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--debug', action='store_true')
+    return parser.parse_args()
 
+def run():
+    args = parse_args()
+    app.run_server(debug=args.debug)
 
-
+if __name__ == "__main__":
+    run()
