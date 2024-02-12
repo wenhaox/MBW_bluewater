@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.9.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "bearing": 0,
+    "latitude": 39.253541,
+    "longitude": -76.574837,
+    "maxZoom": 16,
+    "pitch": 45,
+    "zoom": 12
+  },
+  "layers": [
+    {
+      "@@type": "GeoJsonLayer",
+      "data": {
+        "features": [
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.5725455817907,
+                    39.254541
+                  ],
+                  [
+                    -76.57319129089535,
+                    39.25540702540379
+                  ],
+                  [
+                    -76.57448270910464,
+                    39.25540702540379
+                  ],
+                  [
+                    -76.57512841820929,
+                    39.254541
+                  ],
+                  [
+                    -76.57448270910464,
+                    39.253674974596215
+                  ],
+                  [
+                    -76.57319129089535,
+                    39.253674974596215
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 19.0,
+              "Nitrate/Nitrite (mg/L)": 0.36,
+              "Total Kjeldahl Nitrogen (mg/L)": 2.1,
+              "Total Nitrogen (mg/L)": 2.4,
+              "Total Phosphorus (mg/L)": 0.05,
+              "Total Water Depth (ft)": 37.8,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-07"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.55466193525706,
+                    39.235341
+                  ],
+                  [
+                    -76.55530746762852,
+                    39.236207025403786
+                  ],
+                  [
+                    -76.55659853237148,
+                    39.236207025403786
+                  ],
+                  [
+                    -76.55724406474295,
+                    39.235341
+                  ],
+                  [
+                    -76.55659853237148,
+                    39.23447497459621
+                  ],
+                  [
+                    -76.55530746762852,
+                    39.23447497459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 29.0,
+              "Nitrate/Nitrite (mg/L)": 0.34,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.7,
+              "Total Nitrogen (mg/L)": 2.1,
+              "Total Phosphorus (mg/L)": 0.041,
+              "Total Water Depth (ft)": 25.4,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-08"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.60242604431575,
+                    39.283701
+                  ],
+                  [
+                    -76.60307202215787,
+                    39.28456702540379
+                  ],
+                  [
+                    -76.60436397784213,
+                    39.28456702540379
+                  ],
+                  [
+                    -76.60500995568425,
+                    39.283701
+                  ],
+                  [
+                    -76.60436397784213,
+                    39.28283497459621
+                  ],
+                  [
+                    -76.60307202215787,
+                    39.28283497459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 0.0,
+              "Nitrate/Nitrite (mg/L)": 0.43,
+              "Total Kjeldahl Nitrogen (mg/L)": 2.5,
+              "Total Nitrogen (mg/L)": 2.9,
+              "Total Phosphorus (mg/L)": 0.07,
+              "Total Water Depth (ft)": 7.9,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-12"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.59544617053407,
+                    39.276857
+                  ],
+                  [
+                    -76.59609208526705,
+                    39.27772302540379
+                  ],
+                  [
+                    -76.59738391473296,
+                    39.27772302540379
+                  ],
+                  [
+                    -76.59802982946593,
+                    39.276857
+                  ],
+                  [
+                    -76.59738391473296,
+                    39.27599097459621
+                  ],
+                  [
+                    -76.59609208526705,
+                    39.27599097459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 6.7,
+              "Nitrate/Nitrite (mg/L)": 0.39,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.3,
+              "Total Nitrogen (mg/L)": 1.7,
+              "Total Phosphorus (mg/L)": 0.026,
+              "Total Water Depth (ft)": 22.7,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-13"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.58272917728272,
+                    39.276491
+                  ],
+                  [
+                    -76.58337508864136,
+                    39.27735702540379
+                  ],
+                  [
+                    -76.58466691135865,
+                    39.27735702540379
+                  ],
+                  [
+                    -76.5853128227173,
+                    39.276491
+                  ],
+                  [
+                    -76.58466691135865,
+                    39.27562497459621
+                  ],
+                  [
+                    -76.58337508864136,
+                    39.27562497459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 14.0,
+              "Nitrate/Nitrite (mg/L)": 0.37,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.4,
+              "Total Nitrogen (mg/L)": 1.8,
+              "Total Phosphorus (mg/L)": 0.026,
+              "Total Water Depth (ft)": 16.7,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-14"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.57262917390841,
+                    39.276674
+                  ],
+                  [
+                    -76.5732750869542,
+                    39.27754002540379
+                  ],
+                  [
+                    -76.5745669130458,
+                    39.27754002540379
+                  ],
+                  [
+                    -76.57521282609159,
+                    39.276674
+                  ],
+                  [
+                    -76.5745669130458,
+                    39.27580797459621
+                  ],
+                  [
+                    -76.5732750869542,
+                    39.27580797459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 21.0,
+              "Nitrate/Nitrite (mg/L)": 0.36,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.3,
+              "Total Nitrogen (mg/L)": 1.7,
+              "Total Phosphorus (mg/L)": 0.032,
+              "Total Water Depth (ft)": 11.4,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-15"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.57447943319701,
+                    39.262607
+                  ],
+                  [
+                    -76.57512521659851,
+                    39.26347302540379
+                  ],
+                  [
+                    -76.5764167834015,
+                    39.26347302540379
+                  ],
+                  [
+                    -76.577062566803,
+                    39.262607
+                  ],
+                  [
+                    -76.5764167834015,
+                    39.261740974596215
+                  ],
+                  [
+                    -76.57512521659851,
+                    39.261740974596215
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 25.0,
+              "Nitrate/Nitrite (mg/L)": 0.35,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.8,
+              "Total Nitrogen (mg/L)": 2.1,
+              "Total Phosphorus (mg/L)": 0.036,
+              "Total Water Depth (ft)": 24.2,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-16"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.6218144166133,
+                    39.263507
+                  ],
+                  [
+                    -76.62246020830665,
+                    39.264373025403785
+                  ],
+                  [
+                    -76.62375179169337,
+                    39.264373025403785
+                  ],
+                  [
+                    -76.62439758338671,
+                    39.263507
+                  ],
+                  [
+                    -76.62375179169337,
+                    39.26264097459621
+                  ],
+                  [
+                    -76.62246020830665,
+                    39.26264097459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 18.0,
+              "Nitrate/Nitrite (mg/L)": 0.33,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.5,
+              "Total Nitrogen (mg/L)": 1.8,
+              "Total Phosphorus (mg/L)": 0.035,
+              "Total Water Depth (ft)": 3.8,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-17"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.60924769320596,
+                    39.248491
+                  ],
+                  [
+                    -76.60989334660297,
+                    39.24935702540379
+                  ],
+                  [
+                    -76.61118465339703,
+                    39.24935702540379
+                  ],
+                  [
+                    -76.61183030679405,
+                    39.248491
+                  ],
+                  [
+                    -76.61118465339703,
+                    39.247624974596214
+                  ],
+                  [
+                    -76.60989334660297,
+                    39.247624974596214
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 22.0,
+              "Nitrate/Nitrite (mg/L)": 0.26,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.7,
+              "Total Nitrogen (mg/L)": 2.0,
+              "Total Phosphorus (mg/L)": 0.036,
+              "Total Water Depth (ft)": 6.1,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-18"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.60881355878526,
+                    39.25579
+                  ],
+                  [
+                    -76.60945927939262,
+                    39.256656025403785
+                  ],
+                  [
+                    -76.61075072060738,
+                    39.256656025403785
+                  ],
+                  [
+                    -76.61139644121475,
+                    39.25579
+                  ],
+                  [
+                    -76.61075072060738,
+                    39.25492397459621
+                  ],
+                  [
+                    -76.60945927939262,
+                    39.25492397459621
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 16.0,
+              "Nitrate/Nitrite (mg/L)": 0.29,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.4,
+              "Total Nitrogen (mg/L)": 1.7,
+              "Total Phosphorus (mg/L)": 0.026,
+              "Total Water Depth (ft)": 19.7,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-19"
+            },
+            "type": "Feature"
+          },
+          {
+            "geometry": {
+              "coordinates": [
+                [
+                  [
+                    -76.59331357934103,
+                    39.254674
+                  ],
+                  [
+                    -76.59395928967052,
+                    39.25554002540379
+                  ],
+                  [
+                    -76.59525071032948,
+                    39.25554002540379
+                  ],
+                  [
+                    -76.59589642065897,
+                    39.254674
+                  ],
+                  [
+                    -76.59525071032948,
+                    39.253807974596214
+                  ],
+                  [
+                    -76.59395928967052,
+                    39.253807974596214
+                  ]
+                ]
+              ],
+              "type": "Polygon"
+            },
+            "properties": {
+              "Chlorophyll (\u00b5g/L)": 12.0,
+              "Nitrate/Nitrite (mg/L)": 0.34,
+              "Total Kjeldahl Nitrogen (mg/L)": 1.4,
+              "Total Nitrogen (mg/L)": 1.7,
+              "Total Phosphorus (mg/L)": 0.024,
+              "Total Water Depth (ft)": 16.8,
+              "collection_date": "4/3/13",
+              "station_id": "BWB-PATMH-20"
+            },
+            "type": "Feature"
+          }
+        ],
+        "type": "FeatureCollection"
+      },
+      "extruded": true,
+      "filled": true,
+      "getElevation": "@@=properties['Total Water Depth (ft)'] * 100",
+      "getFillColor": "@@=[255, 255, properties['Total Water Depth (ft)'] / 30  * 255]",
+      "getLineColor": [
+        255,
+        255,
+        255
+      ],
+      "id": "7a87ec63-a1d2-432c-b184-84ce62ec3017",
+      "opacity": 0.8,
+      "stroked": false,
+      "wireframe": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = true;
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
