@@ -8,7 +8,7 @@ import plotly.express as px
 import dash
 import dash_bootstrap_components as dbc
 
-from dash.lib import load_data
+from lib import load_data
 
 app = dash.Dash()
 

@@ -2,7 +2,7 @@ import pydeck as pdk
 import json
 
 # Use the local path to your GeoJSON file
-DATA_URL = "output_geojson_hexagons.json"  # Make sure this path is correct
+DATA_URL = "geojson/output_geojson_hexagons.json"  # Make sure this path is correct
 
 # Debug step: Load and print a portion of the GeoJSON file to ensure it's read correctly
 with open(DATA_URL, 'r') as f:
