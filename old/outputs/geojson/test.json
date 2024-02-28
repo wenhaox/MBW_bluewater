@@ -1,0 +1,226 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-01-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 100
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.61, 39.26]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-01-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 200
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.62, 39.27]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-01-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 150
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.63, 39.28]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-01-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 250
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.64, 39.29]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-02-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 300
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.65, 39.30]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-02-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 350
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.66, 39.31]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-02-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 400
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.67, 39.32]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-02-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 450
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.68, 39.33]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-03-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 500
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.69, 39.34]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-03-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 550
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.70, 39.35]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-03-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 600
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.71, 39.36]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-03-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 650
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.72, 39.37]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-04-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 700
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.73, 39.38]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-04-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 750
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.74, 39.39]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-04-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 800
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.75, 39.40]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-04-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 850
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.76, 39.41]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-05-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 900
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.77, 39.42]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-05-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 950
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.78, 39.43]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-05-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 1000
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.79, 39.44]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "year_month": "2022-05-01T00:00:00+00:00",
+          "Enterococcus Bacteria (MPN/100mL) - A2LA Lab": 1050
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-76.80, 39.45]
+        }
+      }
+    ]
+  }
+  
