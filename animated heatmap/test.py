@@ -1,10 +1,10 @@
 import pandas as pd
 import folium
 from folium.plugins import HeatMapWithTime
-import os
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-# https://pypi.org/project/global-land-mask/
+import global_land_mask as glm
+
 # Load CSV data
 df = pd.read_csv('animated heatmap/processed data/combined_original_and_predicted_data.csv')
 
@@ -12,16 +12,18 @@ df = pd.read_csv('animated heatmap/processed data/combined_original_and_predicte
 df['collection_date'] = pd.to_datetime(df[['year', 'month']].assign(DAY=1))
 
 # Normalize the 'Enterococcus Bacteria (MPN/100mL) - A2LA Lab' within the entire dataset
-# First, handle missing data appropriately. Here, simply filling with zeros or some form of imputation if better for your analysis
 df['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = df['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].fillna(0)
-
 scaler = MinMaxScaler(feature_range=(0, 1))
 df['normalized_value'] = scaler.fit_transform(df[['Enterococcus Bacteria (MPN/100mL) - A2LA Lab']])
 
-# Filter the dataframe by date range after normalization to include all points in normalization
+# Identify points marked as 'original' or not on land
+df['keep_point'] = df.apply(lambda row: True if row['data_type'] == 'original' else not glm.is_land(row['latitude'], row['longitude']), axis=1)
+filtered_df = df[df['keep_point']]
+
+# Proceed with your filtering by date range after normalization
 start_date = pd.to_datetime('2009-01-01')
-end_date = pd.to_datetime('2030-12-01') 
-filtered_df = df[(df['collection_date'] >= start_date) & (df['collection_date'] <= end_date)]
+end_date = pd.to_datetime('2030-12-01')
+filtered_df = filtered_df[(filtered_df['collection_date'] >= start_date) & (filtered_df['collection_date'] <= end_date)]
 
 # Transform the filtered data for HeatMapWithTime
 data_per_date = []
@@ -36,13 +38,15 @@ for date in np.sort(filtered_df['collection_date'].unique()):
 
 # Initialize and configure the heatmap
 m = folium.Map(location=[39.2904, -76.6122], zoom_start=9)
+
 gradient = {
-    0.1: 'blue', 
-    0.2: 'lime', 
-    0.3: 'yellow', 
-    0.5: 'orange', 
-    0.7: 'red', 
-    0.95: 'purple'
+    0.0: 'blue', 
+    0.05: 'cyan', 
+    0.1: 'lime', 
+    0.2: 'yellow', 
+    0.3: 'orange', 
+    0.4: 'red', 
+    0.5: 'purple'
 }
 HeatMapWithTime(data_per_date, index=dates, auto_play=True, max_opacity=0.8, gradient=gradient, radius=20, use_local_extrema=True).add_to(m)
 

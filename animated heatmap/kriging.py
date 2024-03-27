@@ -29,8 +29,8 @@ for (year, month), group in df.groupby(['year', 'month']):
     )
 
     # Define the grid points where predictions are needed
-    grid_x = np.linspace(coordinates[:, 0].min(), coordinates[:, 0].max(), num=100)
-    grid_y = np.linspace(coordinates[:, 1].min(), coordinates[:, 1].max(), num=100)
+    grid_x = np.linspace(coordinates[:, 0].min(), coordinates[:, 0].max(), num=30)
+    grid_y = np.linspace(coordinates[:, 1].min(), coordinates[:, 1].max(), num=30)
     grid_x, grid_y = np.meshgrid(grid_x, grid_y)
 
     # Predict values on the defined grid
