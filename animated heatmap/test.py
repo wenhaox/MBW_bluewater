@@ -11,8 +11,6 @@ df = pd.read_csv('animated heatmap/processed data/combined_original_and_predicte
 # Create 'collection_date' column
 df['collection_date'] = pd.to_datetime(df[['year', 'month']].assign(DAY=1))
 
-# Exclude January to April
-df = df[~df['collection_date'].dt.month.isin([1, 2, 3, 4])]
 
 # Normalize the 'Enterococcus Bacteria (MPN/100mL) - A2LA Lab' column
 df['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = df['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].fillna(0)
@@ -44,12 +42,12 @@ m = folium.Map(location=[39.2904, -76.6122], zoom_start=12, zoom_control=False)
 
 gradient = {
     0.0: 'blue', 
-    0.05: 'cyan', 
-    0.1: 'lime', 
-    0.2: 'yellow', 
-    0.3: 'orange', 
-    0.4: 'red', 
-    0.5: 'purple'
+    0.1: 'cyan', 
+    0.2: 'lime', 
+    0.3: 'yellow', 
+    0.5: 'orange', 
+    0.7: 'red', 
+    0.9: 'purple'
 }
 
 HeatMapWithTime(data_per_date, index=dates, auto_play=True, max_opacity=0.8, gradient=gradient, radius=50, use_local_extrema=True).add_to(m)

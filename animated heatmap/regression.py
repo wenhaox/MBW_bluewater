@@ -30,21 +30,10 @@ merged_data = pd.merge(complete_grid, data, on=['latitude', 'longitude', 'collec
 filled_data = pd.DataFrame()
 
 for (lat, lon), group in merged_data.groupby(['latitude', 'longitude']):
-    X = group[['day_of_year']]
-    y = group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab']  # Adjust column name as necessary
-
-    if y.notnull().sum() > 0:
-        X_train = X[y.notnull()]
-        y_train = y[y.notnull()]
-        X_predict = X[y.isnull()]
-
-        if len(X_train) > 1:
-            model = LinearRegression()
-            model.fit(X_train, y_train)
-
-            if not X_predict.empty:
-                predictions = model.predict(X_predict)
-                group.loc[y.isnull(), 'Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = predictions
+    # Sort data by day_of_year for proper interpolation
+    group = group.sort_values(by='day_of_year')
+    # Perform linear interpolation
+    group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].interpolate()
 
     filled_data = pd.concat([filled_data, group], ignore_index=True)
 
@@ -56,6 +45,7 @@ filled_data['year'] = filled_data['collection_date'].dt.year
 filled_data['month'] = filled_data['collection_date'].dt.month
 monthly_avg = filled_data.groupby(['latitude', 'longitude', 'year', 'month'], as_index=False).mean(numeric_only=True)
 monthly_avg.drop(columns=['day_of_year'], inplace=True)  # Drop 'day_of_year' as it's no longer relevant
+monthly_avg = monthly_avg.dropna(subset=['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'])
 
 # Save the regression-filled dataset
 filled_data_path = 'animated heatmap/processed data/bacteria_data_filled.csv'  # Update the path as needed
