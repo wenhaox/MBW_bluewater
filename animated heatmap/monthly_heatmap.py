@@ -50,10 +50,7 @@ gradient = {
 }
 
 
-
-
-
-HeatMapWithTime(data_per_date, index=dates, auto_play=True, max_opacity=0.8, gradient=gradient, radius=35, use_local_extrema=False).add_to(m)
+HeatMapWithTime(data_per_date, index=dates, auto_play=True, max_opacity=0.8, gradient=gradient, radius=50, use_local_extrema=False).add_to(m)
 
 # Save map to HTML
 map_filename = 'animated_heatmap_baltimore_yearly.html'

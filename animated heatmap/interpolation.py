@@ -32,8 +32,8 @@ filled_data = pd.DataFrame()
 for (lat, lon), group in merged_data.groupby(['latitude', 'longitude']):
     # Sort data by day_of_year for proper interpolation
     group = group.sort_values(by='day_of_year')
-    # Perform cubic spline interpolation
-    group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].interpolate(method='cubic')
+    # Perform linear interpolation
+    group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'] = group['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].interpolate()
 
     filled_data = pd.concat([filled_data, group], ignore_index=True)
 
@@ -43,7 +43,6 @@ filled_data = filled_data.sort_values(by=['collection_date', 'latitude', 'longit
 # Calculate monthly averages
 filled_data['year'] = filled_data['collection_date'].dt.year
 filled_data['month'] = filled_data['collection_date'].dt.month
-
 monthly_avg = filled_data.groupby(['latitude', 'longitude', 'year', 'month'], as_index=False).mean(numeric_only=True)
 monthly_avg.drop(columns=['day_of_year'], inplace=True)  # Drop 'day_of_year' as it's no longer relevant
 monthly_avg = monthly_avg.dropna(subset=['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'])
