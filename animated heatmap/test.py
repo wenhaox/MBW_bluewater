@@ -19,6 +19,10 @@ df['normalized_value'] = df['Enterococcus Bacteria (MPN/100mL) - A2LA Lab'].rank
 specific_date = pd.to_datetime('2009-05-01')
 day_data = df[df['collection_date'] == specific_date]
 
+# Round latitude and longitude to 2 decimal places
+day_data['longitude'] = day_data['longitude'].round(2)
+day_data['latitude'] = day_data['latitude'].round(2)
+
 # Create a 3D scatter plot
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
